@@ -1,0 +1,60 @@
+<!--ejecutar html online: https://es.infobyip.com/htmlandjavascripteditor.php  -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title>mdc</title>
+
+    <style type="text/css">
+    body {font-family: Arial; 
+        font-size: 11px;
+        background-color: black;
+        color: white;
+        link:white;
+        }
+    a {text-decoration: none;}
+    a:link {color: #ffffff;}
+    a:visited {color: #ffffff;}
+    a:hover {color: #ff0000;}
+    img {border-radius: 25%; 
+        width:200px;
+        height:200px;
+        border: 5px solid #555;
+        margin:20px;
+        transition: transform 0.5s ease-in-out;
+        }
+    boton1{
+        margin:30px;
+        text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+<center>
+
+<div class="boton1">
+<a href="https://www.instagram.com/mdchmariano/">
+<img alt="" src="https://mdchi.github.io/mdc/instagram.jpg"></a>
+
+<a href="https://x.com/mdcMariano">
+<img alt="" src="https://mdchi.github.io/mdc/x.jpg"></a>
+
+<a href="https://www.facebook.com/mdchmariano">
+<img alt="" src="https://mdchi.github.io/mdc/facebook.jpg"></a>
+</div>
+
+<div class="boton1">
+<a href="https://www.youtube.com/@Mariano79d">
+<img alt="" src="https://mdchi.github.io/mdc/audiolibros.jpg"></a>
+
+<a href="https://www.youtube.com/@Mariano79a">
+    <img alt="" src="https://mdchi.github.io/mdc/investing.jpg"></a>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+</center>
+</body>
+</html>
