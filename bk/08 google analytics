@@ -1,0 +1,176 @@
+<!--ejecutar html online: https://es.infobyip.com/htmlandjavascripteditor.php  -->
+<!--img:hover https://www.youtube.com/watch?v=tpQc17cFbyQ -->
+<!-- contador de visitas https://www.youtube.com/watch?v=O1uRatkQ1uY -->
+<!-- google analytics https://www.youtube.com/watch?v=TQCZuXtDWyQ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZLER35FTE4"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZLER35FTE4');
+    </script>
+
+    <title>mdc</title>
+
+    <style type="text/css">
+    body {
+        background-color: black;
+        color: white;
+        display:grid;
+        place-items:center;
+        background-image: url("https://mdchi.github.io/mdc/fondo.gif");
+        }
+    .boton1{
+        border-radius: 25%; 
+        width:200px;
+        height:200px;
+        border: 5px solid #555;
+        margin:10px;
+        }
+    img{
+        border-radius: 25%;
+        width:100%;
+        height:100%;
+        object-fit: cover;
+        transition: transform 0.5s ease-in-out;
+        }
+    img:hover{
+        transform:scale(1.5);
+        }
+    .linea1{
+        display: flex; 
+        justify-content: center;
+        }
+    .boton2{
+        border-radius: 25%; 
+        width:150px;
+        height:150px;
+        border: 5px solid #555;
+        margin:10px;
+        }
+    .texto1{
+        font-family: Cursive; 
+        font-size: 150%;  
+        margin: -50% 0 0 0;
+        text-align:center;
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: black;
+        font-weight: bold;
+        }
+    .texto2{
+        font-family: Cursive; 
+        font-size: 100%;
+        text-align:center;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="linea1">
+<div class="boton1">
+<a href="https://www.instagram.com/mdchmariano/">
+<img alt="" src="https://mdchi.github.io/mdc/instagram.jpg"></a></div>
+
+<div class="boton1">
+<a href="https://x.com/mdcMariano">
+<img alt="" src="https://mdchi.github.io/mdc/x.jpg"></a></div>
+
+<div class="boton1">
+<a href="https://www.facebook.com/mdchmariano">
+<img alt="" src="https://mdchi.github.io/mdc/facebook.jpg"></a></div>
+</div>
+
+
+<div class="linea1">
+<div class="boton2">
+<a href="https://www.youtube.com/@Mariano79d">
+<img alt="" src="https://mdchi.github.io/mdc/audiolibros.jpg"></a>
+<div class="texto1">Audiolibros</div></div>
+
+<div class="boton2">
+<a href="https://www.youtube.com/@Mariano79a">
+<img alt="" src="https://mdchi.github.io/mdc/investing.jpg"></a>
+<div class="texto1">Investing</div></div>
+
+<div class="boton2">
+<a href="https://www.youtube.com/@Mariano79c">
+<img alt="" src="https://mdchi.github.io/mdc/trading.jpg"></a>
+<div class="texto1">Trading</div></div>
+    
+<div class="boton2">
+<a href="https://www.youtube.com/@Mariano79f">
+<img alt="" src="https://mdchi.github.io/mdc/tutoriales.jpg"></a>
+<div class="texto1">Tutoriales</div></div>
+
+<div class="boton2">
+<a href="https://www.youtube.com/@Mariano79k">
+<img alt="" src="https://mdchi.github.io/mdc/market.jpg"></a>
+<div class="texto1">Market</div></div>
+</div>
+
+
+<div class="linea1">
+<div class="boton2">
+<a href="https://www.youtube.com/@Mariano79h">
+<img alt="" src="https://mdchi.github.io/mdc/training.jpg"></a>
+<div class="texto1">Training</div></div>
+
+<div class="boton2">
+<a href="https://www.youtube.com/@Mariano79i">
+<img alt="" src="https://mdchi.github.io/mdc/music.jpg"></a>
+<div class="texto1">Music</div></div>
+
+<div class="boton2">
+<a href="https://www.youtube.com/@Mariano79m">
+<img alt="" src="https://mdchi.github.io/mdc/nutrition.jpg"></a>
+<div class="texto1">Nutrition</div></div>
+    
+<div class="boton2">
+<a href="https://www.youtube.com/@Mariano79e">
+<img alt="" src="https://mdchi.github.io/mdc/family.jpg"></a>
+<div class="texto1">Family</div></div>
+
+<div class="boton2">
+<a href="https://www.youtube.com/@Mariano79j">
+<img alt="" src="https://mdchi.github.io/mdc/church.jpg"></a>
+<div class="texto1">Church</div></div>
+</div>
+
+
+<div class="linea1">
+<div class="boton2">
+<a href="https://www.youtube.com/@Mariano79n">
+<img alt="" src="https://mdchi.github.io/mdc/semillas.jpg"></a>
+<div class="texto1">Semillas</div></div>
+</div>
+
+<div class="linea1">
+<div class="texto2">
+<br><br>
+Hay un solo Dios, y un solo mediador entre Dios y los hombres, Jesucristo hombre (1Timoteo 2:5)
+<br><br>
+Porque de tal manera amo Dios al mundo, que ha dado a su Hijo unigenito, para que todo aquel que en El cree, no se pierda, mas tenga vida eterna (Juan 3:16)
+<br><br>
+Cree en el Senor Jesucristo, y seras salvo (Hechos 16:31)
+<br><br>
+Si confesares con tu boca que Jesus es el Senor, y creyeres en tu corazon que Dios le levanto de los muertos, seras salvo (Romanos 10:9)
+</div></div>
+<br>
+
+
+<div class="linea1">
+<!-- Histats.com  START (hidden counter) -->
+<a href="/" alt="contador gratuito" target="_blank" >
+<img  src="//sstatic1.histats.com/0.gif?4928404&101" alt="contador gratuito" border="0">
+<!-- Histats.com  END  -->
+</div>
+<br>
+
+
+</body>
+</html>
