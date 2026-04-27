@@ -1,163 +1,119 @@
-<!--ejecutar html online: https://es.infobyip.com/htmlandjavascripteditor.php  -->
-<!--img:hover https://www.youtube.com/watch?v=tpQc17cFbyQ -->
-<!-- contador de visitas https://www.youtube.com/watch?v=O1uRatkQ1uY -->
-<!-- google analytics https://www.youtube.com/watch?v=TQCZuXtDWyQ -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZLER35FTE4"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-ZLER35FTE4');
-    </script>
+<html><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>MDC - Enlaces</title>
 
-    <title>mdc</title>
-
-    <style type="text/css">
-    body {
-        background-color: black;
-        color: white;
-        display:grid;
-        place-items:center;
-        background-image: url("https://mdchi.github.io/mdc/fondo.gif");
-        }
-    .boton1{
-        border-radius: 20%; 
-        width:210px;
-        height:45px;
-        border: 5px solid #555;
-        margin:10px;
-        }
-    .boton2{
-        border-radius: 20%; 
-        width:100px;
-        height:45px;
-        border: 5px solid #555;
-        margin:10px;
-        }
-    .linea1{
-        display: flex; 
-        justify-content: center;
-        }
-    .texto1{
-        font-family: Cursive; 
-        font-size: 170%;  
-        margin: 2% 2% 0 0;
-        text-align:center;
-        -webkit-text-stroke-width: 1px;
-        -webkit-text-stroke-color: white;
-        font-weight: bold;
-        }
-    a{
-        color:black;
-        text-decoration: none;
-        }
-    a:visited {
-        color: transparent;
-        text-decoration: none;
-        }
-    .texto2{
-        font-family: Cursive; 
-        font-size: 100%;
-        text-align:center;
-        }
-    </style>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-ZLER35FTE4"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-ZLER35FTE4');
+</script>
+<style>
+:root {
+--primary-color: #ffffff;
+--bg-overlay: rgba(0, 0, 0, 0.75);
+}
+body {
+margin: 0;
+padding: 20px;
+background: black url("https://mdchi.github.io/mdc/fondo.gif") no-repeat center center fixed;
+background-size: cover;
+color: white;
+font-family: 'Segoe UI', Arial, sans-serif;
+display: flex;
+flex-direction: column;
+align-items: center;
+min-height: 100vh;
+}
+.container {
+max-width: 900px;
+width: 100%;
+background: var(--bg-overlay);
+padding: 40px 20px;
+border-radius: 25px;
+backdrop-filter: blur(8px);
+box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+text-align: center;
+}
+.section {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 12px;
+margin-bottom: 25px;
+}
+/* Estilo de Botones */
+.btn {
+background: rgba(255, 255, 255, 0.1);
+border: 2px solid var(--primary-color);
+border-radius: 50px; /* Bordes más redondeados */
+padding: 12px 25px;
+color: white;
+text-decoration: none;
+font-weight: 600;
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+display: inline-flex;
+align-items: center;
+justify-content: center;
+min-width: 140px;
+}
+.btn:hover {
+background: white;
+color: black;
+transform: scale(1.05);
+box-shadow: 0 0 20px rgba(255,255,255,0.4);
+}
+.btn-sm { min-width: 100px; font-size: 0.9rem; }
+.versiculos {
+margin-top: 30px;
+padding-top: 30px;
+border-top: 1px solid rgba(255,255,255,0.2);
+font-size: 1.1rem;
+line-height: 1.6;
+}
+.ref {
+display: block;
+font-size: 0.85rem;
+color: #ccc;
+margin-bottom: 20px;
+font-weight: bold;
+}
+footer { margin-top: 30px; opacity: 0.7; }
+</style>
 </head>
-
 <body>
-
-<div class="linea1">
-<div class="boton2 texto1">
-<a href="https://www.instagram.com/mdchmariano/">IG</a>
+<div class="container">
+<div class="section">
+<a href="https://www.instagram.com/mdchmariano/" target="_blank" rel="noopener noreferrer" class="btn btn-sm">Instagram</a>
+<a href="https://x.com/mdcMariano" target="_blank" rel="noopener noreferrer" class="btn btn-sm">X</a>
+<a href="https://www.facebook.com/mdchmariano" target="_blank" rel="noopener noreferrer" class="btn btn-sm">Facebook</a>
+<a href="https://t.me/mdcMariano" target="_blank" rel="noopener noreferrer" class="btn btn-sm">Telegram</a>
 </div>
-
-<div class="boton2 texto1">
-<a href="https://x.com/mdcMariano">X</a>
+<div class="section">
+<a href="https://www.youtube.com/@MarianoDamian12" target="_blank" rel="noopener noreferrer" class="btn">Tecnología</a>
+<a href="https://www.youtube.com/@MarianoDamian11" target="_blank" rel="noopener noreferrer" class="btn">Programación</a>
+<a href="https://www.youtube.com/@MarianoDamian3" target="_blank" rel="noopener noreferrer" class="btn">Tutoriales</a>
+<a href="https://www.youtube.com/@MarianoDamian8" target="_blank" rel="noopener noreferrer" class="btn">Audiolibros</a>
+<a href="https://www.youtube.com/@MarianoDamian2" target="_blank" rel="noopener noreferrer" class="btn">Música</a>
+<a href="https://www.youtube.com/@MarianoDamian6" target="_blank" rel="noopener noreferrer" class="btn">Entrenamiento</a>
+<a href="https://www.youtube.com/@MarianoDamian5" target="_blank" rel="noopener noreferrer" class="btn">Nutrición</a>
+<a href="https://www.youtube.com/@MarianoDamian13" target="_blank" rel="noopener noreferrer" class="btn">Market</a>
+<a href="https://www.youtube.com/@MarianoDamian10" target="_blank" rel="noopener noreferrer" class="btn">Familia</a>
+<a href="https://www.youtube.com/@MarianoDamian4" target="_blank" rel="noopener noreferrer" class="btn">Cristianos</a>
 </div>
-
-<div class="boton2 texto1">
-<a href="https://www.facebook.com/mdchmariano">FB</a>
-</div>
-
-<div class="boton2 texto1">
-<a href="https://t.me/mdcMariano">TG</a>
-</div>
-</div>
-
-
-<div class="linea1">
-<div class="boton1 texto1">
-<a href="https://www.youtube.com/@MarianoDamian12">Tecnología</a>
-</div>
-
-<div class="boton1 texto1">
-<a href="https://www.youtube.com/@MarianoDamian11">Programación</a>
-</div>
-
-<div class="boton1 texto1">
-<a href="https://www.youtube.com/@MarianoDamian3">Tutoriales</a>
+<div class="versiculos">
+<p>"Hay un solo Dios, y un solo mediador entre Dios y los hombres, Jesucristo hombre"<span class="ref">1 Timoteo 2:5</span></p>
+<p>"Porque de tal manera amó Dios al mundo, que ha dado a su Hijo
+unigénito, para que todo aquel que en Él cree, no se pierda, mas tenga
+vida eterna"<span class="ref">Juan 3:16</span></p>
+<p>"Cree en el Señor Jesucristo, y serás salvo"<span class="ref">Hechos 16:31</span></p>
 </div>
 </div>
-
-<div class="linea1">
-<div class="boton1 texto1">
-<a href="https://www.youtube.com/@MarianoDamian8">Audiolibros</a>
-</div>
-
-<div class="boton1 texto1">
-<a href="https://www.youtube.com/@MarianoDamian2">Música</a>
-</div>
-</div>
-
-<div class="linea1">
-<div class="boton1 texto1">
-<a href="https://www.youtube.com/@MarianoDamian6">Entrenamiento</a>
-</div>
-
-<div class="boton1 texto1">
-<a href="https://www.youtube.com/@MarianoDamian5">Nutrición</a>
-</div>
-
-<div class="boton1 texto1">
-<a href="https://www.youtube.com/@MarianoDamian13">Market</a>
-</div>
-</div>
-
-<div class="linea1">
-<div class="boton1 texto1">
-<a href="https://www.youtube.com/@MarianoDamian10">Familia</a>
-</div>
-
-<div class="boton1 texto1">
-<a href="https://www.youtube.com/@MarianoDamian4">Cristianos</a>
-</div>
-</div>
-
-<div class="linea1">
-<div class="texto2">
-<br><br>
-Hay un solo Dios, y un solo mediador entre Dios y los hombres, Jesucristo hombre (1Timoteo 2:5)
-<br><br>
-Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito,<br>para que todo aquel que en Él cree, no se pierda, mas tenga vida eterna (Juan 3:16)
-<br><br>
-Cree en el Señor Jesucristo, y serás salvo (Hechos 16:31)
-<br><br>
-Si confesares con tu boca que Jesús es el Señor,<br>y creyeres en tu corazón que Dios le levantó de los muertos, serás salvo (Romanos 10:9)
-</div></div>
-<br>
-
-
-<div class="linea1">
-<!-- Histats.com  START (hidden counter) -->
-<a href="/" alt="contador gratuito" target="_blank" >
-<img  src="//sstatic1.histats.com/0.gif?4928404&101" alt="contador gratuito" border="0">
-<!-- Histats.com  END  -->
-</div>
-<br>
-
-
-</body>
-</html>
+<footer>
+<a href="/" target="_blank">
+<img src="//sstatic1.histats.com/0.gif?4928404&amp;101" alt="contador" border="0">
+</a>
+</footer>
+</body></html>
