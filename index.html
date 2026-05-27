@@ -1,116 +1,1300 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html><head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>MDC - Enlaces</title>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MDC - Dashboard de Canales</title>
+    
+    <!-- Google Tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZLER35FTE4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZLER35FTE4');
+    </script>
 
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-ZLER35FTE4"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-ZLER35FTE4');
-</script>
-<style>
-body {
-margin: 0;
-padding: 20px;
-/* Fondo GIF original */
-background: black url("https://mdchi.github.io/mdc/fondo.gif") no-repeat center center fixed;
-background-size: cover;
-color: white;
-font-family: 'Segoe UI', Arial, sans-serif;
-display: flex;
-flex-direction: column;
-align-items: center;
-min-height: 100vh;
-}
-.container {
-max-width: 900px;
-width: 100%;
-/* TOTALMENTE TRANSPARENTE: Eliminamos fondo y efectos de desenfoque */
-background: transparent; padding: 20px;
-text-align: center;
-}
-.section {
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
-gap: 15px;
-margin-bottom: 25px;
-}
-/* Estilo de Botones */
-.btn {
-background: transparent;
-border: 2px solid white;
-border-radius: 50px;
-padding: 12px 25px;
-color: white;
-text-decoration: none;
-font-weight: 600;
-transition: all 0.3s ease;
-display: inline-flex;
-align-items: center;
-justify-content: center;
-min-width: 140px;
-/* Sombra de texto para asegurar legibilidad sobre el GIF */
-text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
-}
-.btn:hover {
-background: white;
-color: black;
-transform: scale(1.05);
-text-shadow: none;
-}
-.btn-sm { min-width: 100px; }
-/* Versículos con sombra para que se lean bien sobre cualquier fondo */
-.versiculos {
-margin-top: 30px;
-padding-top: 30px;
-font-size: 1.1rem;
-line-height: 1.6;
-text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
-}
-.ref {
-display: block;
-font-size: 0.85rem;
-color: #ddd;
-margin-bottom: 20px;
-font-weight: bold;
-}
-footer { margin-top: auto; padding: 20px; }
-</style>
+    <!-- Google Fonts: Plus Jakarta Sans for UI & Playfair Display for Bible Verses -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-base: #030305;
+            --bg-surface: rgba(15, 18, 28, 0.4);
+            --bg-surface-hover: rgba(25, 30, 48, 0.55);
+            --border-light: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.18);
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #64748b;
+            --transition-speed: 0.35s;
+            --shadow-base: 0 10px 40px -10px rgba(0, 0, 0, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            background: var(--bg-base) url("https://mdchi.github.io/mdc/fondo.gif") no-repeat center center fixed;
+            background-size: cover;
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        /* Overlay semi-transparente para mejorar el contraste de los textos sobre el GIF animado */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 50% 30%, rgba(3, 4, 8, 0.35) 0%, rgba(3, 4, 8, 0.85) 100%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Scrollbar Personalizado */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        /* Contenedor Principal */
+        .app-container {
+            max-width: 1400px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            flex-grow: 1;
+        }
+
+        /* Cabecera Principal (Glassmorphism) */
+        header {
+            background: var(--bg-surface);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid var(--border-light);
+            border-radius: 24px;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            box-shadow: var(--shadow-base);
+        }
+
+        .header-left h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.75px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-left p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+            font-weight: 400;
+        }
+
+        /* Enlaces de Redes Sociales */
+        .social-container {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-light);
+            padding: 8px 16px;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .social-link svg {
+            transition: transform 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--btn-hover-bg, #ffffff);
+            color: var(--btn-hover-color, #000000);
+            border-color: var(--btn-hover-bg, #ffffff);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--btn-shadow, rgba(255,255,255,0.15));
+            text-shadow: none;
+        }
+
+        .social-link:hover svg {
+            transform: scale(1.1);
+        }
+
+        /* Widgets de Estado y Reloj */
+        .status-widgets {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-light);
+            padding: 8px 14px;
+            border-radius: 14px;
+            color: var(--text-secondary);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #ef4444;
+            box-shadow: 0 0 8px #ef4444;
+            transition: all 0.5s ease;
+        }
+
+        .status-dot.syncing {
+            background-color: #3b82f6;
+            box-shadow: 0 0 10px #3b82f6;
+            animation: pulse-blue 1.5s infinite;
+        }
+
+        .status-dot.active {
+            background-color: #10b981;
+            box-shadow: 0 0 10px #10b981;
+            animation: pulse-green 2s infinite;
+        }
+
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
+            70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        @keyframes pulse-blue {
+            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.6); }
+            70% { box-shadow: 0 0 0 8px rgba(59, 130, 246, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        }
+
+        .clock-badge {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #ffffff;
+            background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
+            border: 1px solid var(--border-light);
+            padding: 8px 16px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        /* Fila de Controles (Buscador y Categorías) */
+        .controls-card {
+            background: var(--bg-surface);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            box-shadow: var(--shadow-base);
+        }
+
+        /* Filtros rápidos (Pills) */
+        .filter-pills {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            scrollbar-width: none;
+            padding-bottom: 4px;
+            max-width: 100%;
+        }
+
+        .filter-pills::-webkit-scrollbar {
+            display: none;
+        }
+
+        .filter-pill {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-light);
+            padding: 8px 16px;
+            border-radius: 12px;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .filter-pill:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            border-color: var(--border-hover);
+        }
+
+        .filter-pill.active {
+            background: #ffffff;
+            color: #000000;
+            border-color: #ffffff;
+            box-shadow: 0 4px 15px rgba(255,255,255,0.3);
+        }
+
+        .refresh-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-light);
+            color: var(--text-primary);
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s ease;
+        }
+
+        .refresh-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--border-hover);
+            transform: scale(1.05);
+        }
+
+        .refresh-btn.spinning svg {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Grid de Canales */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Tarjeta de Canal */
+        .channel-card {
+            background: var(--bg-surface);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: 1.1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+            transition: all var(--transition-speed) cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-base);
+        }
+
+        .channel-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--border-hover);
+            box-shadow: 0 20px 40px var(--card-glow);
+        }
+
+        /* Contenedor de Miniatura */
+        .thumbnail-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: #0b0c10;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.8);
+        }
+
+        .thumbnail-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .channel-card:hover .thumbnail-img {
+            transform: scale(1.06);
+        }
+
+        /* Capa de Reproducción */
+        .video-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .channel-card:hover .video-overlay {
+            opacity: 1;
+        }
+
+        .play-btn {
+            width: 48px;
+            height: 48px;
+            background: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+            transform: scale(0.85);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            color: #030305;
+        }
+
+        .channel-card:hover .play-btn {
+            transform: scale(1);
+        }
+
+        /* Etiquetas de Categoría y Tiempo */
+        .category-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 5px 12px;
+            border-radius: 30px;
+            font-size: 0.65rem;
+            font-weight: 800;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .duration-badge {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(3, 4, 8, 0.8);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 0.68rem;
+            font-weight: 600;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Información del Canal */
+        .channel-details {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .channel-name {
+            font-size: 0.72rem;
+            font-weight: 800;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .verified-icon {
+            color: #38bdf8;
+            display: inline-flex;
+        }
+
+        .video-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            line-height: 1.45;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            height: 2.9em;
+            transition: color 0.25s ease;
+        }
+
+        .video-title:hover {
+            color: var(--channel-accent);
+        }
+
+        /* Pie de la Tarjeta */
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 0.8rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .handle-text {
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .youtube-icon-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-light);
+            color: var(--text-secondary);
+            transition: all 0.25s ease;
+            text-decoration: none;
+        }
+
+        .youtube-icon-link:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--border-hover);
+            color: #ff4545;
+            transform: scale(1.08);
+        }
+
+        /* Versículos de Fe */
+        .faith-section {
+            background: var(--bg-surface);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid var(--border-light);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 1rem;
+            box-shadow: var(--shadow-base);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .faith-title {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #ffd700, #ffa500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .verses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .verse-card {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+        }
+
+        .verse-card:hover {
+            background: rgba(255, 255, 255, 0.03);
+            border-color: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .verse-text {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #e2e8f0;
+            font-style: italic;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+            margin-bottom: 0.8rem;
+        }
+
+        .verse-ref {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #ffb703;
+            letter-spacing: 0.5px;
+            text-align: right;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+
+        /* Loading Skeletons */
+        .skeleton-card {
+            background: rgba(15, 18, 28, 0.25);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: 1.1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+            height: 320px;
+        }
+
+        .skeleton-thumb {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border-radius: 12px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.02) 25%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.02) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite linear;
+        }
+
+        .skeleton-text-lg {
+            width: 40%;
+            height: 14px;
+            border-radius: 4px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.02) 25%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.02) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite linear;
+        }
+
+        .skeleton-text-md {
+            width: 100%;
+            height: 16px;
+            border-radius: 4px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.02) 25%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.02) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite linear;
+        }
+
+        .skeleton-text-sm {
+            width: 60%;
+            height: 16px;
+            border-radius: 4px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.02) 25%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.02) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite linear;
+        }
+
+        .skeleton-footer {
+            margin-top: auto;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            height: 30px;
+            align-items: center;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Tarjeta de Error */
+        .error-card {
+            background: rgba(239, 68, 68, 0.05);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: 20px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 0.8rem;
+            min-height: 320px;
+            box-shadow: 0 10px 30px rgba(239, 68, 68, 0.06);
+        }
+
+        .error-circle {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .error-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .error-details {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            max-width: 220px;
+            line-height: 1.4;
+        }
+
+        .retry-btn {
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid rgba(239, 68, 68, 0.25);
+            color: #fca5a5;
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .retry-btn:hover {
+            background: rgba(239, 68, 68, 0.25);
+            color: #ffffff;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 2rem;
+            padding: 1.5rem 0 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            width: 100%;
+            max-width: 1400px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        footer a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Responsividad */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            header {
+                padding: 1.25rem;
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .header-left {
+                text-align: center;
+            }
+            .header-left h1 {
+                justify-content: center;
+            }
+            .social-container {
+                justify-content: center;
+            }
+            .status-widgets {
+                justify-content: space-between;
+                width: 100%;
+            }
+            .controls-card {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 1rem;
+            }
+
+            .verses-grid {
+                grid-template-columns: 1fr;
+            }
+            footer {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.75rem;
+            }
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-<div class="section">
-<a href="https://www.instagram.com/mdchmariano/" target="_blank" rel="noopener noreferrer" class="btn btn-sm">Instagram</a>
-<a href="https://x.com/mdcMariano" target="_blank" rel="noopener noreferrer" class="btn btn-sm">X</a>
-<a href="https://www.facebook.com/mdchmariano" target="_blank" rel="noopener noreferrer" class="btn btn-sm">Facebook</a>
-<a href="https://t.me/mdcMariano" target="_blank" rel="noopener noreferrer" class="btn btn-sm">Telegram</a>
-</div>
-<div class="section">
-<a href="https://www.youtube.com/@MarianoDamian12" target="_blank" rel="noopener noreferrer" class="btn">Tecnología</a>
-<a href="https://www.youtube.com/@MarianoDamian11" target="_blank" rel="noopener noreferrer" class="btn">Programación</a>
-<a href="https://www.youtube.com/@MarianoDamian3" target="_blank" rel="noopener noreferrer" class="btn">Tutoriales</a>
-<a href="https://www.youtube.com/@MarianoDamian8" target="_blank" rel="noopener noreferrer" class="btn">Audiolibros</a>
-<a href="https://www.youtube.com/@MarianoDamian2" target="_blank" rel="noopener noreferrer" class="btn">Música</a>
-<a href="https://www.youtube.com/@MarianoDamian6" target="_blank" rel="noopener noreferrer" class="btn">Entrenamiento</a>
-<a href="https://www.youtube.com/@MarianoDamian5" target="_blank" rel="noopener noreferrer" class="btn">Nutrición</a>
-<a href="https://www.youtube.com/@MarianoDamian13" target="_blank" rel="noopener noreferrer" class="btn">Market</a>
-<a href="https://www.youtube.com/@MarianoDamian10" target="_blank" rel="noopener noreferrer" class="btn">Familia</a>
-<a href="https://www.youtube.com/@MarianoDamian4" target="_blank" rel="noopener noreferrer" class="btn">Cristianos</a>
-</div>
-<div class="versiculos">
-<p>"Hay un solo Dios, y un solo mediador entre Dios y los hombres, Jesucristo hombre"<span class="ref">1 Timoteo 2:5</span></p>
-<p>"Porque de tal manera amó Dios al mundo, que ha dado a su Hijo
-unigénito, para que todo aquel que en Él cree, no se pierda, mas tenga
-vida eterna"<span class="ref">Juan 3:16</span></p>
-<p>"Cree en el Señor Jesucristo, y serás salvo"<span class="ref">Hechos 16:31</span></p>
-</div>
-</div>
-<footer>
-<a href="/" target="_blank">
-<img src="//sstatic1.histats.com/0.gif?4928404&amp;101" alt="contador" border="0">
-</a>
-</footer>
-</body></html>
+
+    <div class="app-container">
+        
+        <!-- Header con Redes Sociales y Widget de Reloj -->
+        <header>
+            <div class="header-left">
+                <h1>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: #ff4545;"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><polygon points="10 15 15 12 10 9"/></svg>
+                    MDC Canales
+                </h1>
+                <p>Monitoreo en tiempo real de tus videos favoritos</p>
+            </div>
+
+            <!-- Botones de Redes Sociales Integrados con Colores de Marca en Hover -->
+            <div class="social-container">
+                <a href="https://www.instagram.com/mdchmariano/" target="_blank" rel="noopener noreferrer" class="social-link" style="--btn-hover-bg: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); --btn-hover-color: #ffffff; --btn-shadow: rgba(220, 39, 67, 0.45);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                    Instagram
+                </a>
+                <a href="https://x.com/mdcMariano" target="_blank" rel="noopener noreferrer" class="social-link" style="--btn-hover-bg: #ffffff; --btn-hover-color: #000000; --btn-shadow: rgba(255, 255, 255, 0.25);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l11.733 16h4.267l-11.733 -16z"/><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"/></svg>
+                    X
+                </a>
+                <a href="https://www.facebook.com/mdchmariano" target="_blank" rel="noopener noreferrer" class="social-link" style="--btn-hover-bg: #1877f2; --btn-hover-color: #ffffff; --btn-shadow: rgba(24, 119, 242, 0.45);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    Facebook
+                </a>
+                <a href="https://t.me/mdcMariano" target="_blank" rel="noopener noreferrer" class="social-link" style="--btn-hover-bg: #0088cc; --btn-hover-color: #ffffff; --btn-shadow: rgba(0, 136, 204, 0.45);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+                    Telegram
+                </a>
+            </div>
+
+            <!-- Reloj e Indicador de Sincronía -->
+            <div class="status-widgets">
+                <div class="status-badge">
+                    <span class="status-dot" id="status-dot"></span>
+                    <span id="status-text">Cargando...</span>
+                </div>
+                <div class="clock-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    <span id="digital-clock">00:00:00</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Barra de Controles: Filtros de Categoría y Actualizar -->
+        <div class="controls-card">
+            <div class="filter-pills" id="filter-pills">
+                <button class="filter-pill active" data-category="todos">Todos</button>
+            </div>
+
+            <button class="refresh-btn" id="refresh-btn" title="Actualizar contenido">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M3 21v-5h5"/></svg>
+            </button>
+        </div>
+
+        <!-- Grid de Canales / Tarjetas -->
+        <main class="dashboard-grid" id="dashboard-grid">
+            <!-- Skeletons renderizados inicialmente -->
+        </main>
+
+        <!-- Sección de Versículos de Fe en Estilo Especial -->
+        <section class="faith-section">
+            <div class="faith-title">Mensaje de Fe</div>
+            <div class="verses-grid">
+                <div class="verse-card">
+                    <p class="verse-text">"Hay un solo Dios, y un solo mediador entre Dios y los hombres, Jesucristo hombre"</p>
+                    <span class="verse-ref">1 Timoteo 2:5</span>
+                </div>
+                <div class="verse-card">
+                    <p class="verse-text">"Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito, para que todo aquel que en Él cree, no se pierda, mas tenga vida eterna"</p>
+                    <span class="verse-ref">Juan 3:16</span>
+                </div>
+                <div class="verse-card">
+                    <p class="verse-text">"Cree en el Señor Jesucristo, y serás salvo"</p>
+                    <span class="verse-ref">Hechos 16:31</span>
+                </div>
+                <div class="verse-card">
+                    <p class="verse-text">"Si confesares con tu boca que Jesús es el Señor, y creyeres en tu corazón que Dios le levantó de los muertos, serás salvo"</p>
+                    <span class="verse-ref">Romanos 10:9</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer y Contador de Visitas Histats -->
+        <footer>
+            <div>
+                Última sincronización: <span id="sync-time" style="font-weight: 600; color: var(--text-secondary);">Nunca</span>
+            </div>
+            <div>
+                <!-- Histats.com START (hidden counter) -->
+                <a href="/" target="_blank">
+                    <img src="//sstatic1.histats.com/0.gif?4928404&101" alt="contador gratuito" border="0">
+                </a>
+                <!-- Histats.com END -->
+            </div>
+            <div>
+                Desarrollado en HTML5/JS Premium
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- JavaScript del Dashboard -->
+    <script>
+        // Configuración de Canales
+        const channels = [
+            {
+                id: 'UCzeA-vp1TsacX_uK0ha-AVw',
+                handle: '@MarianoDamian12',
+                name: 'Hardware',
+                category: 'hardware',
+                color: 'linear-gradient(135deg, #ff416c, #ff4b2b)',
+                glow: 'rgba(255, 75, 43, 0.4)',
+                icon: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 1v3"/><path d="M15 1v3"/><path d="M9 20v3"/><path d="M15 20v3"/><path d="M20 9h3"/><path d="M20 15h3"/><path d="M1 9h3"/><path d="M1 15h3"/></svg>'
+            },
+            {
+                id: 'UCOaarpzsNvp4yaLSHPv9vXg',
+                handle: '@MarianoDamian11',
+                name: 'IA',
+                category: 'ia',
+                color: 'linear-gradient(135deg, #00c6ff, #0072ff)',
+                glow: 'rgba(0, 114, 255, 0.4)',
+                icon: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/><path d="M12 5v14"/><path d="M12 12h6"/><path d="M12 12H6"/><path d="M12 9h4"/><path d="M12 9H8"/><path d="M12 15h4"/><path d="M12 15H8"/></svg>'
+            },
+            {
+                id: 'UCoyTRMG5VsgbQBRyCHAwVpA',
+                handle: '@MarianoDamian3',
+                name: 'Gaming',
+                category: 'gaming',
+                color: 'linear-gradient(135deg, #ec008c, #fc6767)',
+                glow: 'rgba(236, 0, 140, 0.4)',
+                icon: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="3"/><line x1="6" x2="10" y1="12" y2="12"/><line x1="8" x2="8" y1="10" y2="14"/><line x1="15" x2="15.01" y1="13" y2="13"/><line x1="18" x2="18.01" y1="11" y2="11"/></svg>'
+            },
+            {
+                id: 'UCAIOYbdfpDhdvgnXCVj_FMw',
+                handle: '@MarianoDamian8',
+                name: 'Audiolibros',
+                category: 'audiolibros',
+                color: 'linear-gradient(135deg, #f12711, #f5af19)',
+                glow: 'rgba(245, 175, 25, 0.4)',
+                icon: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>'
+            },
+            {
+                id: 'UC32IvjwSWutD6Sk8xWHJAYw',
+                handle: '@MarianoDamian2',
+                name: 'Música',
+                category: 'musica',
+                color: 'linear-gradient(135deg, #7f00ff, #e100ff)',
+                glow: 'rgba(127, 0, 255, 0.4)',
+                icon: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>'
+            },
+            {
+                id: 'UCmnLUFpB49Y4N-Cvlm1EOvQ',
+                handle: '@MarianoDamian6',
+                name: 'Entrenamiento',
+                category: 'entrenamiento',
+                color: 'linear-gradient(135deg, #11998e, #38ef7d)',
+                glow: 'rgba(56, 239, 125, 0.4)',
+                icon: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6.5 6.5 11 11"/><path d="m21 21-1-1"/><path d="m3 3 1 1"/><path d="m18 22 4-4"/><path d="m2 6 4-4"/><path d="m3 10 7-7"/><path d="m14 21 7-7"/><path d="M6.5 12.5 12.5 6.5"/><path d="m11.5 17.5 6-6"/></svg>'
+            },
+            {
+                id: 'UCVyHsYL8OAmgixYytH4nwqg',
+                handle: '@MarianoDamian5',
+                name: 'Nutrición',
+                category: 'nutricion',
+                color: 'linear-gradient(135deg, #a8ff78, #78ffd6)',
+                glow: 'rgba(120, 255, 214, 0.4)',
+                icon: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 3.5 0 8.5C17 15 13.9 19 11 20z"/><path d="M9 11.3c2-.6 4.1-.3 6 1"/></svg>'
+            },
+            {
+                id: 'UC-_w187ULGUnBYwPLiy4uXg',
+                handle: '@MarianoDamian13',
+                name: 'Market',
+                category: 'market',
+                color: 'linear-gradient(135deg, #00b09b, #96c93d)',
+                glow: 'rgba(0, 176, 155, 0.4)',
+                icon: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>'
+            },
+            {
+                id: 'UCuAyGU-7FIvm-NC5AkyzFLw',
+                handle: '@MarianoDamian10',
+                name: 'Familia',
+                category: 'familia',
+                color: 'linear-gradient(135deg, #ff9a9e, #fecfef)',
+                glow: 'rgba(255, 154, 158, 0.4)',
+                icon: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>'
+            },
+            {
+                id: 'UC4WOWgIM4t22-A0od2zTVBg',
+                handle: '@MarianoDamian4',
+                name: 'Cristianos',
+                category: 'cristianos',
+                color: 'linear-gradient(135deg, #4568dc, #b06ab3)',
+                glow: 'rgba(69, 104, 220, 0.4)',
+                icon: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M8 9h8"/></svg>'
+            }
+        ];
+
+        // Estado Global de la App
+        let videosData = [];
+        let activeCategory = 'todos';
+        let searchQuery = '';
+
+        // Inicialización al cargar la página
+        document.addEventListener('DOMContentLoaded', () => {
+            initClock();
+            initFilterPills();
+            loadAllChannels();
+
+            // Escuchar eventos
+            document.getElementById('refresh-btn').addEventListener('click', () => loadAllChannels());
+        });
+
+        // Reloj Digital de Alta Precisión
+        function initClock() {
+            const clockEl = document.getElementById('digital-clock');
+            const updateClock = () => {
+                const now = new Date();
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const seconds = String(now.getSeconds()).padStart(2, '0');
+                clockEl.textContent = `${hours}:${minutes}:${seconds}`;
+            };
+            updateClock();
+            setInterval(updateClock, 1000);
+        }
+
+        // Renderizar Filtros Rápidos (Pills)
+        function initFilterPills() {
+            const container = document.getElementById('filter-pills');
+            
+            channels.forEach(ch => {
+                const btn = document.createElement('button');
+                btn.className = 'filter-pill';
+                btn.dataset.category = ch.category;
+                btn.innerHTML = `${ch.icon} ${ch.name}`;
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    activeCategory = ch.category;
+                    renderFilteredCards();
+                });
+                container.appendChild(btn);
+            });
+
+            // Acción para el botón "Todos"
+            document.querySelector('.filter-pill[data-category="todos"]').addEventListener('click', (e) => {
+                document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                activeCategory = 'todos';
+                renderFilteredCards();
+            });
+        }
+
+        // Renderizar Skeletons de Carga con Shimmer
+        function renderSkeletons() {
+            const grid = document.getElementById('dashboard-grid');
+            grid.innerHTML = '';
+            for (let i = 0; i < 10; i++) {
+                grid.innerHTML += `
+                    <div class="skeleton-card">
+                        <div class="skeleton-thumb"></div>
+                        <div class="skeleton-text-lg"></div>
+                        <div class="skeleton-text-md"></div>
+                        <div class="skeleton-text-sm"></div>
+                        <div class="skeleton-footer">
+                            <div class="skeleton-text-lg" style="width: 30%;"></div>
+                            <div class="skeleton-text-lg" style="width: 10%;"></div>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // Extraer ID del video de YouTube a partir de la URL de feed
+        function getYouTubeId(url) {
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            const match = url.match(regExp);
+            return (match && match[2].length === 11) ? match[2] : null;
+        }
+
+        // Calcular Tiempo Relativo de publicación
+        function getRelativeTime(pubDateStr) {
+            const date = new Date(pubDateStr.replace(' ', 'T'));
+            const now = new Date();
+            const diffMs = now - date;
+            const diffMins = Math.floor(diffMs / 60000);
+            const diffHours = Math.floor(diffMs / 3600000);
+            const diffDays = Math.floor(diffMs / 86400000);
+
+            if (diffMins < 60) {
+                return diffMins <= 1 ? "Hace un momento" : `Hace ${diffMins} min`;
+            } else if (diffHours < 24) {
+                return `Hace ${diffHours} hora${diffHours > 1 ? 's' : ''}`;
+            } else if (diffDays === 1) {
+                return "Ayer";
+            } else if (diffDays < 7) {
+                return `Hace ${diffDays} días`;
+            } else {
+                return date.toLocaleDateString('es-ES', { day: 'numeric', month: 'short' });
+            }
+        }
+
+        // Obtener el feed de un único canal a través de rss2json API libre de caché
+        async function fetchChannelFeed(ch) {
+            const timestamp = new Date().getTime();
+            const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${ch.id}&_t=${timestamp}`;
+            const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+            
+            const response = await fetch(apiUrl, { cache: 'no-store' });
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            
+            const data = await response.json();
+            if (data.status !== 'ok' || !data.items || data.items.length === 0) {
+                throw new Error("Feed vacío");
+            }
+            
+            const latestVideo = data.items[0];
+            const videoId = getYouTubeId(latestVideo.link);
+            
+            return {
+                ...ch,
+                title: latestVideo.title,
+                link: latestVideo.link,
+                pubDate: latestVideo.pubDate,
+                videoId: videoId,
+                thumbnail: videoId ? `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg` : latestVideo.thumbnail,
+                fallbackThumbnail: videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : latestVideo.thumbnail,
+                success: true
+            };
+        }
+
+        // Cargar todos los canales en paralelo
+        async function loadAllChannels() {
+            const statusDot = document.getElementById('status-dot');
+            const statusText = document.getElementById('status-text');
+            const refreshBtn = document.getElementById('refresh-btn');
+
+            statusDot.className = 'status-dot syncing';
+            statusText.textContent = 'Actualizando...';
+            refreshBtn.classList.add('spinning');
+            renderSkeletons();
+
+            videosData = [];
+
+            const promises = channels.map(async (ch) => {
+                try {
+                    const video = await fetchChannelFeed(ch);
+                    videosData.push(video);
+                } catch (error) {
+                    console.error(`Error cargando canal ${ch.name}:`, error);
+                    videosData.push({
+                        ...ch,
+                        success: false,
+                        errorMsg: error.message || "Error al conectar"
+                    });
+                }
+            });
+
+            await Promise.all(promises);
+
+            // Actualizar estados de conexión en UI
+            const successCount = videosData.filter(v => v.success).length;
+            if (successCount === channels.length) {
+                statusDot.className = 'status-dot active';
+                statusText.textContent = 'Sincronizado';
+            } else if (successCount > 0) {
+                statusDot.className = 'status-dot active';
+                statusText.textContent = `En línea (${successCount}/10)`;
+            } else {
+                statusDot.className = 'status-dot';
+                statusText.textContent = 'Sin conexión';
+            }
+
+            refreshBtn.classList.remove('spinning');
+            
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            document.getElementById('sync-time').textContent = timeStr;
+
+            renderFilteredCards();
+        }
+
+        // Renderizar las tarjetas filtradas en el dashboard
+        function renderFilteredCards() {
+            const grid = document.getElementById('dashboard-grid');
+            grid.innerHTML = '';
+
+            const filtered = videosData.filter(v => {
+                return (activeCategory === 'todos' || v.category === activeCategory);
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 0; color: var(--text-muted);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 1rem; opacity: 0.5;"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+                        <p style="font-size: 1rem; font-weight: 600;">No se encontraron videos</p>
+                        <p style="font-size: 0.85rem; margin-top: 0.25rem;">Prueba con otros términos o filtros</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Ordenar según la configuración original de los canales
+            const orderMap = {};
+            channels.forEach((ch, idx) => orderMap[ch.id] = idx);
+            filtered.sort((a, b) => orderMap[a.id] - orderMap[b.id]);
+
+            filtered.forEach(video => {
+                if (video.success) {
+                    const relativeTime = getRelativeTime(video.pubDate);
+                    
+                    const card = document.createElement('div');
+                    card.className = 'channel-card';
+                    card.style.setProperty('--card-glow', video.glow);
+                    
+                    // Extraer color hex del gradient para colorear dinámicamente títulos
+                    const colorHex = video.color.match(/#[0-9a-fA-F]{3,6}/) ? video.color.match(/#[0-9a-fA-F]{3,6}/)[0] : '#ffffff';
+                    card.style.setProperty('--channel-accent', colorHex);
+
+                    card.innerHTML = `
+                        <!-- Miniatura con fallback resiliente -->
+                        <div class="thumbnail-container">
+                            <a href="${video.link}" target="_blank" rel="noopener noreferrer">
+                                <img src="${video.thumbnail}" onload="if(this.naturalWidth===120) this.src='${video.fallbackThumbnail}';" onerror="this.onerror=null; this.src='${video.fallbackThumbnail}';" class="thumbnail-img" alt="${video.title}">
+                                <div class="video-overlay">
+                                    <div class="play-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="category-badge" style="background: ${video.color}">
+                                ${video.icon}
+                                <span>${video.name}</span>
+                            </div>
+                            <div class="duration-badge">${relativeTime}</div>
+                        </div>
+
+                        <!-- Información del canal y verificación -->
+                        <div class="channel-details">
+                            <span class="channel-name">${video.name}</span>
+                            <span class="verified-icon" title="Verificado">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                            </span>
+                        </div>
+
+                        <!-- Enlace del Título -->
+                        <a href="${video.link}" target="_blank" rel="noopener noreferrer" class="video-title" title="${video.title}">
+                            ${video.title}
+                        </a>
+
+                        <!-- Footer de la tarjeta -->
+                        <div class="card-footer">
+                            <span class="handle-text">${video.handle}</span>
+                            <a href="${video.link}" target="_blank" rel="noopener noreferrer" class="youtube-icon-link" title="Ver en YouTube">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+                            </a>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                } else {
+                    // Tarjeta en caso de error de conexión o parseo del Feed
+                    const card = document.createElement('div');
+                    card.className = 'error-card';
+                    card.innerHTML = `
+                        <div class="error-circle">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
+                        </div>
+                        <div class="error-title">${video.name}</div>
+                        <div class="error-details">No se pudo cargar el último video de ${video.handle} (${video.errorMsg}).</div>
+                        <button class="retry-btn" onclick="retrySingleChannel('${video.id}')">Reintentar</button>
+                    `;
+                    grid.appendChild(card);
+                }
+            });
+        }
+
+        // Reintentar la sincronización de un único canal individualmente
+        async function retrySingleChannel(channelId) {
+            const chIdx = videosData.findIndex(v => v.id === channelId);
+            if (chIdx === -1) return;
+
+            const ch = channels.find(c => c.id === channelId);
+            if (!ch) return;
+
+            const cards = document.querySelectorAll('#dashboard-grid > div');
+            const targetCard = cards[chIdx];
+            if (targetCard) {
+                targetCard.innerHTML = `
+                    <div class="skeleton-thumb" style="height: 110px;"></div>
+                    <div class="skeleton-text-lg" style="margin-top: 10px;"></div>
+                    <div class="skeleton-text-md"></div>
+                `;
+                targetCard.className = 'skeleton-card';
+            }
+
+            try {
+                const video = await fetchChannelFeed(ch);
+                videosData[chIdx] = video;
+            } catch (error) {
+                console.error(`Reintento fallido para ${ch.name}:`, error);
+                videosData[chIdx] = {
+                    ...ch,
+                    success: false,
+                    errorMsg: error.message || "Error al conectar"
+                };
+            }
+
+            // Recalcular estado global
+            const successCount = videosData.filter(v => v.success).length;
+            const statusDot = document.getElementById('status-dot');
+            const statusText = document.getElementById('status-text');
+            if (successCount === channels.length) {
+                statusDot.className = 'status-dot active';
+                statusText.textContent = 'Sincronizado';
+            } else {
+                statusDot.className = 'status-dot active';
+                statusText.textContent = `En línea (${successCount}/10)`;
+            }
+
+            renderFilteredCards();
+        }
+    </script>
+</body>
+</html>
