@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MDC - Dashboard de Canales</title>
-    
-    <!-- Google Tag (gtag.js) -->
+    <title>MDC - Enlaces</title>
+
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZLER35FTE4"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -14,1168 +14,449 @@
         gtag('config', 'G-ZLER35FTE4');
     </script>
 
-    <!-- Google Fonts: Plus Jakarta Sans for UI & Playfair Display for Bible Verses -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --bg-base: #030305;
-            --bg-surface: rgba(15, 18, 28, 0.4);
-            --bg-surface-hover: rgba(25, 30, 48, 0.55);
-            --border-light: rgba(255, 255, 255, 0.08);
-            --border-hover: rgba(255, 255, 255, 0.18);
-            --text-primary: #f8fafc;
-            --text-secondary: #cbd5e1;
-            --text-muted: #64748b;
-            --transition-speed: 0.35s;
-            --shadow-base: 0 10px 40px -10px rgba(0, 0, 0, 0.7);
+            --bg-color: #0d0d12;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.65);
+            --text-muted: rgba(255, 255, 255, 0.45);
+            --transition-speed: 0.4s;
+            --ease-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
         body {
-            background: var(--bg-base) url("https://mdchi.github.io/mdc/fondo.gif") no-repeat center center fixed;
+            background: radial-gradient(circle at center, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.8) 100%),
+                        black url("https://mdchi.github.io/mdc/fondo.gif") no-repeat center center fixed;
             background-size: cover;
             color: var(--text-primary);
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: flex-start;
+            padding: 40px 20px;
             overflow-x: hidden;
-            padding: 1.5rem;
-            position: relative;
+            line-height: 1.5;
         }
 
-        /* Overlay semi-transparente para mejorar el contraste de los textos sobre el GIF animado */
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background: radial-gradient(circle at 50% 30%, rgba(3, 4, 8, 0.35) 0%, rgba(3, 4, 8, 0.85) 100%);
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        /* Scrollbar Personalizado */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.2);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.12);
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 255, 255, 0.25);
-        }
-
-        /* Contenedor Principal */
-        .app-container {
-            max-width: 1400px;
+        .container {
+            max-width: 480px;
             width: 100%;
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
-            flex-grow: 1;
-        }
-
-        /* Cabecera Principal (Glassmorphism) */
-        header {
-            background: var(--bg-surface);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid var(--border-light);
-            border-radius: 24px;
-            padding: 1.5rem 2rem;
-            display: flex;
-            justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            box-shadow: var(--shadow-base);
+            gap: 32px;
+            margin: auto 0;
         }
 
-        .header-left h1 {
+        /* Profile Header */
+        .profile-header {
+            text-align: center;
+            animation: fadeInDown 0.8s var(--ease-smooth);
+        }
+
+        .logo-container {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 76px;
+            height: 76px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            margin-bottom: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .logo-title {
             font-size: 1.8rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #94a3b8 100%);
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            margin-bottom: 6px;
+            background: linear-gradient(135deg, #ffffff 0%, #d1d1d6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: -0.75px;
+        }
+
+        .logo-subtitle {
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: var(--text-secondary);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Links Section */
+        .links-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            animation: fadeInUp 0.8s var(--ease-smooth) 0.1s both;
+        }
+
+        .link-card {
             display: flex;
             align-items: center;
-            gap: 10px;
-        }
-
-        .header-left p {
-            font-size: 0.88rem;
-            color: var(--text-secondary);
-            margin-top: 0.25rem;
-            font-weight: 400;
-        }
-
-        /* Enlaces de Redes Sociales */
-        .social-container {
-            display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-        }
-
-        .social-link {
+            justify-content: space-between;
+            padding: 18px 24px;
+            border-radius: 18px;
             text-decoration: none;
-            font-size: 0.8rem;
-            font-weight: 700;
             color: var(--text-primary);
             background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--border-light);
-            padding: 8px 16px;
-            border-radius: 50px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: all var(--transition-speed) var(--ease-smooth);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
         }
 
-        .social-link svg {
-            transition: transform 0.3s ease;
+        .link-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.05),
+                transparent
+            );
+            transition: 0.5s;
         }
 
-        .social-link:hover {
-            background: var(--btn-hover-bg, #ffffff);
-            color: var(--btn-hover-color, #000000);
-            border-color: var(--btn-hover-bg, #ffffff);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px var(--btn-shadow, rgba(255,255,255,0.15));
-            text-shadow: none;
+        .link-card:hover::before {
+            left: 100%;
         }
 
-        .social-link:hover svg {
-            transform: scale(1.1);
-        }
-
-        /* Widgets de Estado y Reloj */
-        .status-widgets {
+        .link-content {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 16px;
+            z-index: 2;
         }
 
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border-light);
-            padding: 8px 14px;
-            border-radius: 14px;
-            color: var(--text-secondary);
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background-color: #ef4444;
-            box-shadow: 0 0 8px #ef4444;
-            transition: all 0.5s ease;
-        }
-
-        .status-dot.syncing {
-            background-color: #3b82f6;
-            box-shadow: 0 0 10px #3b82f6;
-            animation: pulse-blue 1.5s infinite;
-        }
-
-        .status-dot.active {
-            background-color: #10b981;
-            box-shadow: 0 0 10px #10b981;
-            animation: pulse-green 2s infinite;
-        }
-
-        @keyframes pulse-green {
-            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
-            70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-        }
-
-        @keyframes pulse-blue {
-            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.6); }
-            70% { box-shadow: 0 0 0 8px rgba(59, 130, 246, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
-        }
-
-        .clock-badge {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: #ffffff;
-            background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
-            border: 1px solid var(--border-light);
-            padding: 8px 16px;
-            border-radius: 14px;
+        .link-icon-wrapper {
             display: flex;
             align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-        }
-
-        .refresh-btn {
-            background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
-            border: 1px solid var(--border-light);
-            color: var(--text-primary);
+            justify-content: center;
             width: 38px;
             height: 38px;
             border-radius: 12px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.25s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all var(--transition-speed) var(--ease-smooth);
         }
 
-        .refresh-btn:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: var(--border-hover);
+        .link-icon {
+            width: 20px;
+            height: 20px;
+            fill: #ffffff;
+            transition: all var(--transition-speed) var(--ease-smooth);
+        }
+
+        .link-title {
+            font-size: 1.05rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: color var(--transition-speed) var(--ease-smooth);
+        }
+
+        .arrow-icon {
+            width: 18px;
+            height: 18px;
+            fill: none;
+            stroke: var(--text-muted);
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transform: translateX(-5px);
+            opacity: 0;
+            transition: all var(--transition-speed) var(--ease-smooth);
+            z-index: 2;
+        }
+
+        /* Hover Styles per Brand */
+        .link-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--brand-color);
+            box-shadow: 0 12px 28px var(--glow-color), 
+                        0 4px 12px rgba(0, 0, 0, 0.1);
+            background: var(--bg-hover);
+        }
+
+        .link-card:hover .link-icon-wrapper {
+            background: var(--brand-color);
+            border-color: transparent;
+            box-shadow: 0 0 12px var(--glow-color);
+            transform: scale(1.08) rotate(5deg);
+        }
+
+        .link-card:hover .link-icon {
+            fill: #ffffff;
             transform: scale(1.05);
         }
 
-        .refresh-btn.spinning svg {
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Grid de Canales */
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        /* Tarjeta de Canal */
-        .channel-card {
-            background: var(--bg-surface);
-            backdrop-filter: blur(16px) saturate(180%);
-            -webkit-backdrop-filter: blur(16px) saturate(180%);
-            border: 1px solid var(--border-light);
-            border-radius: 20px;
-            padding: 1.1rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.9rem;
-            transition: all var(--transition-speed) cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-            overflow: hidden;
-            box-shadow: var(--shadow-base);
-        }
-
-        .channel-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--border-hover);
-            box-shadow: 0 20px 40px var(--card-glow);
-        }
-
-        /* Contenedor de Miniatura */
-        .thumbnail-container {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            border-radius: 12px;
-            overflow: hidden;
-            background-color: #0b0c10;
-            box-shadow: inset 0 0 15px rgba(0,0,0,0.8);
-        }
-
-        .thumbnail-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .channel-card:hover .thumbnail-img {
-            transform: scale(1.06);
-        }
-
-        /* Capa de Reproducción */
-        .video-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-
-        .channel-card:hover .video-overlay {
+        .link-card:hover .arrow-icon {
             opacity: 1;
+            transform: translateX(0);
+            stroke: #ffffff;
         }
 
-        .play-btn {
-            width: 48px;
-            height: 48px;
-            background: #ffffff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.5);
-            transform: scale(0.85);
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            color: #030305;
+        /* Brands Configuration */
+        .link-instagram {
+            --brand-color: #e1306c;
+            --glow-color: rgba(225, 48, 108, 0.25);
+            --bg-hover: rgba(225, 48, 108, 0.06);
         }
 
-        .channel-card:hover .play-btn {
-            transform: scale(1);
+        .link-x {
+            --brand-color: #ffffff;
+            --glow-color: rgba(255, 255, 255, 0.15);
+            --bg-hover: rgba(255, 255, 255, 0.05);
         }
 
-        /* Etiquetas de Categoría y Tiempo */
-        .category-badge {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            padding: 5px 12px;
-            border-radius: 30px;
-            font-size: 0.65rem;
-            font-weight: 800;
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        .link-facebook {
+            --brand-color: #1877f2;
+            --glow-color: rgba(24, 119, 242, 0.25);
+            --bg-hover: rgba(24, 119, 242, 0.06);
         }
 
-        .duration-badge {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            background: rgba(3, 4, 8, 0.8);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            padding: 3px 8px;
-            border-radius: 6px;
-            font-size: 0.68rem;
-            font-weight: 600;
-            color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .link-telegram {
+            --brand-color: #24a1de;
+            --glow-color: rgba(36, 161, 222, 0.25);
+            --bg-hover: rgba(36, 161, 222, 0.06);
         }
 
-        /* Información del Canal */
-        .channel-details {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .channel-name {
-            font-size: 0.72rem;
-            font-weight: 800;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .verified-icon {
-            color: #38bdf8;
-            display: inline-flex;
-        }
-
-        .video-title {
-            font-size: 0.95rem;
-            font-weight: 600;
-            line-height: 1.45;
-            color: var(--text-primary);
-            text-decoration: none;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            height: 2.9em;
-            transition: color 0.25s ease;
-        }
-
-        .video-title:hover {
-            color: var(--channel-accent);
-        }
-
-        /* Pie de la Tarjeta */
-        .card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: auto;
-            padding-top: 0.8rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            font-size: 0.75rem;
-            color: var(--text-muted);
-        }
-
-        .handle-text {
-            font-weight: 500;
-            color: var(--text-muted);
-        }
-
-        .youtube-icon-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border-light);
-            color: var(--text-secondary);
-            transition: all 0.25s ease;
-            text-decoration: none;
-        }
-
-        .youtube-icon-link:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: var(--border-hover);
-            color: #ff4545;
-            transform: scale(1.08);
-        }
-
-        /* Versículos de Fe */
-        .faith-section {
-            background: var(--bg-surface);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid var(--border-light);
+        /* Verses Section */
+        .versiculos-card {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border-radius: 24px;
-            padding: 2rem;
-            margin-top: 1rem;
-            box-shadow: var(--shadow-base);
+            padding: 32px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 24px;
+            text-align: left;
+            animation: fadeInUp 0.8s var(--ease-smooth) 0.2s both;
         }
 
-        .faith-title {
-            text-align: center;
-            font-size: 1.2rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            background: linear-gradient(90deg, #ffd700, #ffa500);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 0.5rem;
+        .versiculo-item {
+            position: relative;
+            padding-left: 20px;
+            border-left: 2px solid rgba(255, 255, 255, 0.12);
+            transition: border-color var(--transition-speed) var(--ease-smooth);
         }
 
-        .verses-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.5rem;
+        .versiculo-item:hover {
+            border-left-color: var(--brand-hover-glow, rgba(255, 255, 255, 0.7));
         }
 
-        .verse-card {
-            background: rgba(255, 255, 255, 0.01);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            border-radius: 16px;
-            padding: 1.25rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: all 0.3s ease;
-        }
-
-        .verse-card:hover {
-            background: rgba(255, 255, 255, 0.03);
-            border-color: rgba(255, 255, 255, 0.08);
-            transform: translateY(-2px);
-        }
-
-        .verse-text {
-            font-family: 'Playfair Display', Georgia, serif;
+        .versiculo-texto {
             font-size: 1.05rem;
             line-height: 1.6;
-            color: #e2e8f0;
+            color: rgba(255, 255, 255, 0.9);
             font-style: italic;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
-            margin-bottom: 0.8rem;
+            font-weight: 300;
+            margin-bottom: 8px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
 
-        .verse-ref {
-            font-size: 0.78rem;
-            font-weight: 700;
-            color: #ffb703;
-            letter-spacing: 0.5px;
-            text-align: right;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
-        }
-
-        /* Loading Skeletons */
-        .skeleton-card {
-            background: rgba(15, 18, 28, 0.25);
-            border: 1px solid var(--border-light);
-            border-radius: 20px;
-            padding: 1.1rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.9rem;
-            height: 320px;
-        }
-
-        .skeleton-thumb {
-            width: 100%;
-            aspect-ratio: 16/9;
-            border-radius: 12px;
-            background: linear-gradient(90deg, rgba(255,255,255,0.02) 25%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.02) 75%);
-            background-size: 200% 100%;
-            animation: shimmer 1.5s infinite linear;
-        }
-
-        .skeleton-text-lg {
-            width: 40%;
-            height: 14px;
-            border-radius: 4px;
-            background: linear-gradient(90deg, rgba(255,255,255,0.02) 25%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.02) 75%);
-            background-size: 200% 100%;
-            animation: shimmer 1.5s infinite linear;
-        }
-
-        .skeleton-text-md {
-            width: 100%;
-            height: 16px;
-            border-radius: 4px;
-            background: linear-gradient(90deg, rgba(255,255,255,0.02) 25%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.02) 75%);
-            background-size: 200% 100%;
-            animation: shimmer 1.5s infinite linear;
-        }
-
-        .skeleton-text-sm {
-            width: 60%;
-            height: 16px;
-            border-radius: 4px;
-            background: linear-gradient(90deg, rgba(255,255,255,0.02) 25%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.02) 75%);
-            background-size: 200% 100%;
-            animation: shimmer 1.5s infinite linear;
-        }
-
-        .skeleton-footer {
-            margin-top: auto;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            padding-top: 0.8rem;
-            display: flex;
-            justify-content: space-between;
-            height: 30px;
-            align-items: center;
-        }
-
-        @keyframes shimmer {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
-
-        /* Tarjeta de Error */
-        .error-card {
-            background: rgba(239, 68, 68, 0.05);
-            border: 1px solid rgba(239, 68, 68, 0.2);
-            border-radius: 20px;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            gap: 0.8rem;
-            min-height: 320px;
-            box-shadow: 0 10px 30px rgba(239, 68, 68, 0.06);
-        }
-
-        .error-circle {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: rgba(239, 68, 68, 0.15);
-            color: #ef4444;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .error-title {
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        .error-details {
-            font-size: 0.78rem;
-            color: var(--text-secondary);
-            max-width: 220px;
-            line-height: 1.4;
-        }
-
-        .retry-btn {
-            background: rgba(239, 68, 68, 0.12);
-            border: 1px solid rgba(239, 68, 68, 0.25);
-            color: #fca5a5;
-            padding: 8px 16px;
-            border-radius: 10px;
-            font-size: 0.75rem;
+        .versiculo-ref {
+            display: block;
+            font-size: 0.8rem;
             font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .retry-btn:hover {
-            background: rgba(239, 68, 68, 0.25);
-            color: #ffffff;
+            color: var(--text-secondary);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
         }
 
         /* Footer */
         footer {
-            margin-top: 2rem;
-            padding: 1.5rem 0 1rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            width: 100%;
-            max-width: 1400px;
+            margin-top: 32px;
+            padding: 16px;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            font-size: 0.78rem;
-            color: var(--text-muted);
+            justify-content: center;
+            opacity: 0.4;
+            transition: opacity var(--transition-speed) var(--ease-smooth);
+            animation: fadeIn 1.2s var(--ease-smooth) 0.4s both;
         }
 
-        footer a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s ease;
+        footer:hover {
+            opacity: 1;
         }
 
-        footer a:hover {
-            color: var(--text-primary);
+        footer img {
+            height: 14px;
+            filter: grayscale(1) brightness(2);
+            mix-blend-mode: screen;
         }
 
-        /* Responsividad */
-        @media (max-width: 768px) {
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
             body {
-                padding: 1rem;
+                padding: 30px 16px;
             }
-            header {
-                padding: 1.25rem;
-                flex-direction: column;
-                align-items: stretch;
+            .container {
+                gap: 28px;
             }
-            .header-left {
-                text-align: center;
+            .versiculos-card {
+                padding: 24px;
+                gap: 20px;
             }
-            .header-left h1 {
-                justify-content: center;
-            }
-            .social-container {
-                justify-content: center;
-            }
-            .status-widgets {
-                justify-content: center;
-                gap: 12px;
-                width: 100%;
-                flex-wrap: wrap;
-            }
-
-            .verses-grid {
-                grid-template-columns: 1fr;
-            }
-            footer {
-                flex-direction: column;
-                text-align: center;
-                gap: 0.75rem;
+            .versiculo-texto {
+                font-size: 0.98rem;
             }
         }
     </style>
 </head>
 <body>
-
-    <div class="app-container">
-        
-        <!-- Header con Widget de Reloj -->
-        <header>
-            <div class="header-left">
-                <h1>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: #ff4545;"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><polygon points="10 15 15 12 10 9"/></svg>
-                    MDC Canales
-                </h1>
-                <p>Monitoreo en tiempo real de tus videos favoritos</p>
-            </div>
-
-            <!-- Reloj e Indicador de Sincronía -->
-            <div class="status-widgets">
-                <div class="status-badge">
-                    <span class="status-dot" id="status-dot"></span>
-                    <span id="status-text">Cargando...</span>
-                </div>
-                <div class="clock-badge">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                    <span id="digital-clock">00:00:00</span>
-                </div>
-                <button class="refresh-btn" id="refresh-btn" title="Actualizar contenido">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M3 21v-5h5"/></svg>
-                </button>
-            </div>
+    <div class="container">
+        <!-- Profile Header -->
+        <header class="profile-header">
+            <h1 class="logo-title">Mariano Damian</h1>
         </header>
 
-        <!-- Grid de Canales / Tarjetas -->
-        <main class="dashboard-grid" id="dashboard-grid">
-            <!-- Skeletons renderizados inicialmente -->
+        <!-- Links List -->
+        <main class="links-list">
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/mdchmariano/" target="_blank" rel="noopener noreferrer" class="link-card link-instagram">
+                <div class="link-content">
+                    <div class="link-icon-wrapper">
+                        <svg class="link-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                        </svg>
+                    </div>
+                    <span class="link-title">Instagram</span>
+                </div>
+                <svg class="arrow-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                </svg>
+            </a>
+
+            <!-- X -->
+            <a href="https://x.com/mdcMariano" target="_blank" rel="noopener noreferrer" class="link-card link-x">
+                <div class="link-content">
+                    <div class="link-icon-wrapper">
+                        <svg class="link-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                    </div>
+                    <span class="link-title">X (Twitter)</span>
+                </div>
+                <svg class="arrow-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                </svg>
+            </a>
+
+            <!-- Facebook -->
+            <a href="https://www.facebook.com/mdchmariano" target="_blank" rel="noopener noreferrer" class="link-card link-facebook">
+                <div class="link-content">
+                    <div class="link-icon-wrapper">
+                        <svg class="link-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </div>
+                    <span class="link-title">Facebook</span>
+                </div>
+                <svg class="arrow-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                </svg>
+            </a>
+
+            <!-- Telegram -->
+            <a href="https://t.me/mdcMariano" target="_blank" rel="noopener noreferrer" class="link-card link-telegram">
+                <div class="link-content">
+                    <div class="link-icon-wrapper">
+                        <svg class="link-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11.944 0C5.344 0 0 5.344 0 12c0 6.656 5.344 12 11.944 12 6.6 0 12-5.344 12-12 0-6.656-5.4-12-12-12zM18.156 8.35c-.18.79-.93 4.95-1.32 7.02-.164.88-.49 1.18-.8 1.21-.68.06-1.2-.45-1.86-.88-1.03-.68-1.61-1.1-2.61-1.76-1.16-.76-.41-1.18.25-1.86.17-.18 3.19-2.92 3.25-3.19.01-.03.01-.15-.06-.21a.27.27 0 00-.22-.04c-.1.02-1.7 1.08-4.8 3.17-.45.31-.86.46-1.23.45-.4-.01-1.18-.23-1.75-.41-.7-.23-1.26-.35-1.21-.74.03-.2.31-.4.85-.61 3.33-1.45 5.55-2.4 6.66-2.86 3.16-1.31 3.82-1.54 4.25-1.55.09 0 .31.02.45.14.12.1.15.24.17.34.02.13.01.62-.01.9z"/>
+                        </svg>
+                    </div>
+                    <span class="link-title">Telegram</span>
+                </div>
+                <svg class="arrow-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                </svg>
+            </a>
         </main>
 
-        <!-- Sección de Versículos de Fe en Estilo Especial -->
-        <section class="faith-section">
-            <div class="faith-title">Mensaje de Fe</div>
-            <div class="verses-grid">
-                <div class="verse-card">
-                    <p class="verse-text">"Hay un solo Dios, y un solo mediador entre Dios y los hombres, Jesucristo hombre"</p>
-                    <span class="verse-ref">1 Timoteo 2:5</span>
-                </div>
-                <div class="verse-card">
-                    <p class="verse-text">"Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito, para que todo aquel que en Él cree, no se pierda, mas tenga vida eterna"</p>
-                    <span class="verse-ref">Juan 3:16</span>
-                </div>
-                <div class="verse-card">
-                    <p class="verse-text">"Cree en el Señor Jesucristo, y serás salvo"</p>
-                    <span class="verse-ref">Hechos 16:31</span>
-                </div>
-                <div class="verse-card">
-                    <p class="verse-text">"Si confesares con tu boca que Jesús es el Señor, y creyeres en tu corazón que Dios le levantó de los muertos, serás salvo"</p>
-                    <span class="verse-ref">Romanos 10:9</span>
-                </div>
+        <!-- Versículos Section -->
+        <section class="versiculos-card">
+            <div class="versiculo-item" style="--brand-hover-glow: #e1306c;">
+                <p class="versiculo-texto">"Hay un solo Dios, y un solo mediador entre Dios y los hombres, Jesucristo hombre"</p>
+                <span class="versiculo-ref">1 Timoteo 2:5</span>
+            </div>
+            <div class="versiculo-item" style="--brand-hover-glow: #1877f2;">
+                <p class="versiculo-texto">"Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito, para que todo aquel que en Él cree, no se pierda, mas tenga vida eterna"</p>
+                <span class="versiculo-ref">Juan 3:16</span>
+            </div>
+            <div class="versiculo-item" style="--brand-hover-glow: #24a1de;">
+                <p class="versiculo-texto">"Cree en el Señor Jesucristo, y serás salvo"</p>
+                <span class="versiculo-ref">Hechos 16:31</span>
+            </div>
+            <div class="versiculo-item" style="--brand-hover-glow: #ffffff;">
+                <p class="versiculo-texto">"Si confesares con tu boca que Jesús es el Señor, y creyeres en tu corazón que Dios le levantó de los muertos, serás salvo"</p>
+                <span class="versiculo-ref">Romanos 10:9</span>
             </div>
         </section>
-
-        <!-- Footer y Contador de Visitas Histats -->
-        <footer>
-            <div>
-                Última sincronización: <span id="sync-time" style="font-weight: 600; color: var(--text-secondary);">Nunca</span>
-            </div>
-            <div>
-                <!-- Histats.com START (hidden counter) -->
-                <a href="/" target="_blank">
-                    <img src="//sstatic1.histats.com/0.gif?4928404&101" alt="contador gratuito" border="0">
-                </a>
-                <!-- Histats.com END -->
-            </div>
-            <div>
-                Desarrollado en HTML5/JS Premium
-            </div>
-        </footer>
-
     </div>
 
-    <!-- JavaScript del Dashboard -->
-    <script>
-        // Configuración de Canales
-        const channels = [
-            {
-                id: 'UCzeA-vp1TsacX_uK0ha-AVw',
-                handle: '@MarianoDamian12',
-                name: 'Cripto',
-                category: 'cripto',
-                color: 'linear-gradient(135deg, #ff416c, #ff4b2b)',
-                glow: 'rgba(255, 75, 43, 0.4)',
-                icon: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11.764 19.349H14.5A2.5 2.5 0 0 0 17 16.849V16a1.5 1.5 0 0 0-1.5-1.5H9.5V11H16a1.5 1.5 0 0 0 1.5-1.5v-.849a2.5 2.5 0 0 0-2.5-2.5H11.764"/><path d="M10.5 21v-1.652"/><path d="M13.5 21v-1.652"/><path d="M10.5 4.652V3"/><path d="M13.5 4.652V3"/><path d="M9.5 14.5H14.5A2.5 2.5 0 0 0 17 12a2.5 2.5 0 0 0-2.5-2.5H9.5"/></svg>'
-            },
-            {
-                id: 'UCOaarpzsNvp4yaLSHPv9vXg',
-                handle: '@MarianoDamian11',
-                name: 'IA',
-                category: 'ia',
-                color: 'linear-gradient(135deg, #00c6ff, #0072ff)',
-                glow: 'rgba(0, 114, 255, 0.4)',
-                icon: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/><path d="M12 5v14"/><path d="M12 12h6"/><path d="M12 12H6"/><path d="M12 9h4"/><path d="M12 9H8"/><path d="M12 15h4"/><path d="M12 15H8"/></svg>'
-            },
-            {
-                id: 'UCoyTRMG5VsgbQBRyCHAwVpA',
-                handle: '@MarianoDamian3',
-                name: 'Gaming',
-                category: 'gaming',
-                color: 'linear-gradient(135deg, #ec008c, #fc6767)',
-                glow: 'rgba(236, 0, 140, 0.4)',
-                icon: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="3"/><line x1="6" x2="10" y1="12" y2="12"/><line x1="8" x2="8" y1="10" y2="14"/><line x1="15" x2="15.01" y1="13" y2="13"/><line x1="18" x2="18.01" y1="11" y2="11"/></svg>'
-            },
-            {
-                id: 'UCAIOYbdfpDhdvgnXCVj_FMw',
-                handle: '@MarianoDamian8',
-                name: 'Audiolibros',
-                category: 'audiolibros',
-                color: 'linear-gradient(135deg, #f12711, #f5af19)',
-                glow: 'rgba(245, 175, 25, 0.4)',
-                icon: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>'
-            },
-            {
-                id: 'UC32IvjwSWutD6Sk8xWHJAYw',
-                handle: '@MarianoDamian2',
-                name: 'Música',
-                category: 'musica',
-                color: 'linear-gradient(135deg, #7f00ff, #e100ff)',
-                glow: 'rgba(127, 0, 255, 0.4)',
-                icon: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>'
-            },
-            {
-                id: 'UCmnLUFpB49Y4N-Cvlm1EOvQ',
-                handle: '@MarianoDamian6',
-                name: 'Entrenamiento',
-                category: 'entrenamiento',
-                color: 'linear-gradient(135deg, #11998e, #38ef7d)',
-                glow: 'rgba(56, 239, 125, 0.4)',
-                icon: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6.5 6.5 11 11"/><path d="m21 21-1-1"/><path d="m3 3 1 1"/><path d="m18 22 4-4"/><path d="m2 6 4-4"/><path d="m3 10 7-7"/><path d="m14 21 7-7"/><path d="M6.5 12.5 12.5 6.5"/><path d="m11.5 17.5 6-6"/></svg>'
-            },
-            {
-                id: 'UCVyHsYL8OAmgixYytH4nwqg',
-                handle: '@MarianoDamian5',
-                name: 'Nutrición',
-                category: 'nutricion',
-                color: 'linear-gradient(135deg, #a8ff78, #78ffd6)',
-                glow: 'rgba(120, 255, 214, 0.4)',
-                icon: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 3.5 0 8.5C17 15 13.9 19 11 20z"/><path d="M9 11.3c2-.6 4.1-.3 6 1"/></svg>'
-            },
-            {
-                id: 'UC-_w187ULGUnBYwPLiy4uXg',
-                handle: '@MarianoDamian13',
-                name: 'Market',
-                category: 'market',
-                color: 'linear-gradient(135deg, #00b09b, #96c93d)',
-                glow: 'rgba(0, 176, 155, 0.4)',
-                icon: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>'
-            },
-            {
-                id: 'UCuAyGU-7FIvm-NC5AkyzFLw',
-                handle: '@MarianoDamian10',
-                name: 'Family',
-                category: 'family',
-                color: 'linear-gradient(135deg, #ff9a9e, #fecfef)',
-                glow: 'rgba(255, 154, 158, 0.4)',
-                icon: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>'
-            },
-            {
-                id: 'UC4WOWgIM4t22-A0od2zTVBg',
-                handle: '@MarianoDamian4',
-                name: 'Tutoriales',
-                category: 'tutoriales',
-                color: 'linear-gradient(135deg, #4568dc, #b06ab3)',
-                glow: 'rgba(69, 104, 220, 0.4)',
-                icon: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg>'
-            }
-        ];
 
-        // Estado Global de la App
-        let videosData = [];
-
-        // Inicialización al cargar la página
-        document.addEventListener('DOMContentLoaded', () => {
-            initClock();
-            loadAllChannels();
-
-            // Escuchar eventos
-            document.getElementById('refresh-btn').addEventListener('click', () => loadAllChannels());
-        });
-
-        // Reloj Digital de Alta Precisión
-        function initClock() {
-            const clockEl = document.getElementById('digital-clock');
-            const updateClock = () => {
-                const now = new Date();
-                const hours = String(now.getHours()).padStart(2, '0');
-                const minutes = String(now.getMinutes()).padStart(2, '0');
-                const seconds = String(now.getSeconds()).padStart(2, '0');
-                clockEl.textContent = `${hours}:${minutes}:${seconds}`;
-            };
-            updateClock();
-            setInterval(updateClock, 1000);
-        }
-
-
-
-        // Renderizar Skeletons de Carga con Shimmer
-        function renderSkeletons() {
-            const grid = document.getElementById('dashboard-grid');
-            grid.innerHTML = '';
-            for (let i = 0; i < 10; i++) {
-                grid.innerHTML += `
-                    <div class="skeleton-card">
-                        <div class="skeleton-thumb"></div>
-                        <div class="skeleton-text-lg"></div>
-                        <div class="skeleton-text-md"></div>
-                        <div class="skeleton-text-sm"></div>
-                        <div class="skeleton-footer">
-                            <div class="skeleton-text-lg" style="width: 30%;"></div>
-                            <div class="skeleton-text-lg" style="width: 10%;"></div>
-                        </div>
-                    </div>
-                `;
-            }
-        }
-
-        // Extraer ID del video de YouTube a partir de la URL de feed
-        function getYouTubeId(url) {
-            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-            const match = url.match(regExp);
-            return (match && match[2].length === 11) ? match[2] : null;
-        }
-
-        // Calcular Tiempo Relativo de publicación
-        function getRelativeTime(pubDateStr) {
-            const date = new Date(pubDateStr.replace(' ', 'T'));
-            const now = new Date();
-            const diffMs = now - date;
-            const diffMins = Math.floor(diffMs / 60000);
-            const diffHours = Math.floor(diffMs / 3600000);
-            const diffDays = Math.floor(diffMs / 86400000);
-
-            if (diffMins < 60) {
-                return diffMins <= 1 ? "Hace un momento" : `Hace ${diffMins} min`;
-            } else if (diffHours < 24) {
-                return `Hace ${diffHours} hora${diffHours > 1 ? 's' : ''}`;
-            } else if (diffDays === 1) {
-                return "Ayer";
-            } else if (diffDays < 7) {
-                return `Hace ${diffDays} días`;
-            } else {
-                return date.toLocaleDateString('es-ES', { day: 'numeric', month: 'short' });
-            }
-        }
-
-        // Obtener el feed de un único canal a través de rss2json API libre de caché
-        async function fetchChannelFeed(ch) {
-            const timestamp = new Date().getTime();
-            const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${ch.id}&_t=${timestamp}`;
-            const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
-            
-            const response = await fetch(apiUrl, { cache: 'no-store' });
-            if (!response.ok) throw new Error(`HTTP ${response.status}`);
-            
-            const data = await response.json();
-            if (data.status !== 'ok' || !data.items || data.items.length === 0) {
-                throw new Error("Feed vacío");
-            }
-            
-            const latestVideo = data.items[0];
-            const videoId = getYouTubeId(latestVideo.link);
-            
-            return {
-                ...ch,
-                title: latestVideo.title,
-                link: latestVideo.link,
-                pubDate: latestVideo.pubDate,
-                videoId: videoId,
-                thumbnail: videoId ? `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg` : latestVideo.thumbnail,
-                fallbackThumbnail: videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : latestVideo.thumbnail,
-                success: true
-            };
-        }
-
-        // Cargar todos los canales en paralelo
-        async function loadAllChannels() {
-            const statusDot = document.getElementById('status-dot');
-            const statusText = document.getElementById('status-text');
-            const refreshBtn = document.getElementById('refresh-btn');
-
-            statusDot.className = 'status-dot syncing';
-            statusText.textContent = 'Actualizando...';
-            refreshBtn.classList.add('spinning');
-            renderSkeletons();
-
-            videosData = [];
-
-            const promises = channels.map(async (ch) => {
-                try {
-                    const video = await fetchChannelFeed(ch);
-                    videosData.push(video);
-                } catch (error) {
-                    console.error(`Error cargando canal ${ch.name}:`, error);
-                    videosData.push({
-                        ...ch,
-                        success: false,
-                        errorMsg: error.message || "Error al conectar"
-                    });
-                }
-            });
-
-            await Promise.all(promises);
-
-            // Actualizar estados de conexión en UI
-            const successCount = videosData.filter(v => v.success).length;
-            if (successCount === channels.length) {
-                statusDot.className = 'status-dot active';
-                statusText.textContent = 'Sincronizado';
-            } else if (successCount > 0) {
-                statusDot.className = 'status-dot active';
-                statusText.textContent = `En línea (${successCount}/10)`;
-            } else {
-                statusDot.className = 'status-dot';
-                statusText.textContent = 'Sin conexión';
-            }
-
-            refreshBtn.classList.remove('spinning');
-            
-            const now = new Date();
-            const timeStr = now.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-            document.getElementById('sync-time').textContent = timeStr;
-
-            renderFilteredCards();
-        }
-
-        // Renderizar las tarjetas filtradas en el dashboard
-        function renderFilteredCards() {
-            const grid = document.getElementById('dashboard-grid');
-            grid.innerHTML = '';
-
-            const filtered = [...videosData];
-
-            if (filtered.length === 0) {
-                grid.innerHTML = `
-                    <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 0; color: var(--text-muted);">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 1rem; opacity: 0.5;"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
-                        <p style="font-size: 1rem; font-weight: 600;">No se encontraron videos</p>
-                        <p style="font-size: 0.85rem; margin-top: 0.25rem;">Prueba con otros términos o filtros</p>
-                    </div>
-                `;
-                return;
-            }
-
-            // Ordenar según la configuración original de los canales
-            const orderMap = {};
-            channels.forEach((ch, idx) => orderMap[ch.id] = idx);
-            filtered.sort((a, b) => orderMap[a.id] - orderMap[b.id]);
-
-            filtered.forEach(video => {
-                if (video.success) {
-                    const relativeTime = getRelativeTime(video.pubDate);
-                    
-                    const card = document.createElement('div');
-                    card.className = 'channel-card';
-                    card.style.setProperty('--card-glow', video.glow);
-                    
-                    // Extraer color hex del gradient para colorear dinámicamente títulos
-                    const colorHex = video.color.match(/#[0-9a-fA-F]{3,6}/) ? video.color.match(/#[0-9a-fA-F]{3,6}/)[0] : '#ffffff';
-                    card.style.setProperty('--channel-accent', colorHex);
-
-                    card.innerHTML = `
-                        <!-- Miniatura con fallback resiliente -->
-                        <div class="thumbnail-container">
-                            <a href="${video.link}" target="_blank" rel="noopener noreferrer">
-                                <img src="${video.thumbnail}" onload="if(this.naturalWidth===120) this.src='${video.fallbackThumbnail}';" onerror="this.onerror=null; this.src='${video.fallbackThumbnail}';" class="thumbnail-img" alt="${video.title}">
-                                <div class="video-overlay">
-                                    <div class="play-btn">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="category-badge" style="background: ${video.color}">
-                                ${video.icon}
-                                <span>${video.name}</span>
-                            </div>
-                            <div class="duration-badge">${relativeTime}</div>
-                        </div>
-
-                        <!-- Información del canal y verificación -->
-                        <div class="channel-details">
-                            <span class="channel-name">${video.name}</span>
-                            <span class="verified-icon" title="Verificado">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                            </span>
-                        </div>
-
-                        <!-- Enlace del Título -->
-                        <a href="${video.link}" target="_blank" rel="noopener noreferrer" class="video-title" title="${video.title}">
-                            ${video.title}
-                        </a>
-
-                        <!-- Footer de la tarjeta -->
-                        <div class="card-footer">
-                            <span class="handle-text">${video.handle}</span>
-                            <a href="${video.link}" target="_blank" rel="noopener noreferrer" class="youtube-icon-link" title="Ver en YouTube">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
-                            </a>
-                        </div>
-                    `;
-                    grid.appendChild(card);
-                } else {
-                    // Tarjeta en caso de error de conexión o parseo del Feed
-                    const card = document.createElement('div');
-                    card.className = 'error-card';
-                    card.innerHTML = `
-                        <div class="error-circle">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
-                        </div>
-                        <div class="error-title">${video.name}</div>
-                        <div class="error-details">No se pudo cargar el último video de ${video.handle} (${video.errorMsg}).</div>
-                        <button class="retry-btn" onclick="retrySingleChannel('${video.id}')">Reintentar</button>
-                    `;
-                    grid.appendChild(card);
-                }
-            });
-        }
-
-        // Reintentar la sincronización de un único canal individualmente
-        async function retrySingleChannel(channelId) {
-            const chIdx = videosData.findIndex(v => v.id === channelId);
-            if (chIdx === -1) return;
-
-            const ch = channels.find(c => c.id === channelId);
-            if (!ch) return;
-
-            const cards = document.querySelectorAll('#dashboard-grid > div');
-            const targetCard = cards[chIdx];
-            if (targetCard) {
-                targetCard.innerHTML = `
-                    <div class="skeleton-thumb" style="height: 110px;"></div>
-                    <div class="skeleton-text-lg" style="margin-top: 10px;"></div>
-                    <div class="skeleton-text-md"></div>
-                `;
-                targetCard.className = 'skeleton-card';
-            }
-
-            try {
-                const video = await fetchChannelFeed(ch);
-                videosData[chIdx] = video;
-            } catch (error) {
-                console.error(`Reintento fallido para ${ch.name}:`, error);
-                videosData[chIdx] = {
-                    ...ch,
-                    success: false,
-                    errorMsg: error.message || "Error al conectar"
-                };
-            }
-
-            // Recalcular estado global
-            const successCount = videosData.filter(v => v.success).length;
-            const statusDot = document.getElementById('status-dot');
-            const statusText = document.getElementById('status-text');
-            if (successCount === channels.length) {
-                statusDot.className = 'status-dot active';
-                statusText.textContent = 'Sincronizado';
-            } else {
-                statusDot.className = 'status-dot active';
-                statusText.textContent = `En línea (${successCount}/10)`;
-            }
-
-            renderFilteredCards();
-        }
-    </script>
 </body>
 </html>
